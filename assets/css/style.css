@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  position: fixed;
+  height: 80px;
+  z-index: 999;
+  width: 100%;
+  background: rgb(97, 213, 210);
+  background: linear-gradient(
+    43deg,
+    rgba(97, 213, 210, 1) 0%,
+    rgba(83, 163, 221, 1) 48%,
+    rgba(77, 140, 226, 1) 100%
+  );
+}
+main{
+  padding-top:150px;
+}
+ul.links{
+    margin-bottom: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+}
+.heart{
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 35px;
+  cursor: pointer;
+}
+.heart-filled {
+  color: #ff0000;
+}
+
+.card{
+  position: relative;
+}
