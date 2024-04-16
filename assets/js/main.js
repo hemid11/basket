@@ -246,6 +246,8 @@ if (
 }
 
 // Heart icon functionality
+window.addEventListener("load", loadWishlist);
+
 const heartIcons = document.querySelectorAll(".heart");
 
 heartIcons.forEach((heartIcon) => {
@@ -253,18 +255,27 @@ heartIcons.forEach((heartIcon) => {
     const productId = this.getAttribute("data-id");
     const productName = this.getAttribute("data-name");
 
-    const localWishlist = JSON.parse(localStorage.getItem("wishlist"));
+    const localWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     const foundIndex = localWishlist.findIndex((item) => item.id === productId);
 
-    if (foundIndex !== -1) {
+    if (foundIndex === -1) {
       localWishlist.push({ id: productId, name: productName });
       localStorage.setItem("wishlist", JSON.stringify(localWishlist));
       this.innerHTML = '<i class="fa-solid fa-heart" style="color: #ff0000;"></i>';
-      
     } else {
       localWishlist.splice(foundIndex, 1);
       localStorage.setItem("wishlist", JSON.stringify(localWishlist));
-      this.innerHTML = '<i class="fa-regular fa-heart" style="color: #ff0000;"></i>';  
+      this.innerHTML = '<i class="fa-regular fa-heart" style="color: #ff0000;"></i>';
     }
   });
 });
+
+function loadWishlist() {
+  const localWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  localWishlist.forEach((item) => {
+    const heartIcon = document.querySelector(`.heart[data-id="${item.id}"]`);
+    if (heartIcon) {
+      heartIcon.innerHTML = '<i class="fa-solid fa-heart" style="color: #ff0000;"></i>';
+    }
+  });
+}
